@@ -23,12 +23,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@v3
-      #   with:
-      #     images: corinnekrych/demo-sprint58
-
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v6
@@ -45,6 +39,6 @@ jobs:
           name: "demo-sprint58-artifact"
           version: ${{env.version}}
           url: "docker.io/corinnekrych/demo-sprint58:${{env.version}}"
-          digest: ${{push.outputs.digest}}
+          digest: ${{ steps.push.outputs.digest }}
           cloudbees-url: ${{ vars.CLOUDBEES_PLATFORM_URL }}
           cloudbees-pat: ${{ secrets.CLOUDBEES_PLATFORM_PAT }}          
