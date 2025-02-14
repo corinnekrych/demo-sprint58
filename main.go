@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-    fmt.Println("\n\n\nHello, world Corinne from Sprint 58👋👋👋👋 !\n\n\n")
+    fmt.Println("\n\n\nHello, world Corinne from Sprint 58 👋👋👋👋 !\n\n\n")
     http.HandleFunc("/", HelloServer)
     http.ListenAndServe(":8080", nil)
 }
