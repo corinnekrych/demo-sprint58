@@ -37,3 +37,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          
+      - name: Deploy artifact to CBP
+        uses: cloudbees-gha-cbp/register-build-artifact@main
+        with:
+          component-id: "1541ff41-3361-4159-b594-27142bd69baf"
+          name: "rtFactRegister"
+          version: "1.0.0"
+          url: "docker.io/corinnekrych/demo-sprint58:main"
+          digest: "sha256:4e9519c943cbd59c87044a943a1adab591c4923ca016879406d71aea4370b093"
+          cloudbees-url: ${{ vars.CLOUDBEES_PLATFORM_URL }}
+          cloudbees-pat: ${{ secrets.CLOUDBEES_PLATFORM_PAT }}          
