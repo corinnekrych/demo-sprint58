@@ -24,7 +24,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@9ev3
+        uses: docker/metadata-action@v3
         with:
           images: corinnekrych/demo-sprint58
 
