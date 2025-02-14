@@ -22,12 +22,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: corinnekrych/demo-sprint58
-          tags: $GITHUB_SHA 
+      # - name: Extract metadata (tags, labels) for Docker
+      #   id: meta
+      #   uses: docker/metadata-action@v3
+      #   with:
+      #     images: corinnekrych/demo-sprint58
 
       - name: Build and push Docker image
         id: push
@@ -36,16 +35,15 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
+          tags: "1.0.1"
+          
       - name: Deploy artifact to CBP
-        uses: cloudbees-gha-cbp/register-build-artifact@main 
+        uses: cloudbees-gha-cbp/register-build-artifact@main
         with:
           component-id: "1541ff41-3361-4159-b594-27142bd69baf"
           name: "demo-sprint58-artifact"
           version: "1.0.0"
-          url: "docker.io/corinnekrych/demo-sprint58:$GITHUB_SHA"
-          digest: "sha256:4e9519c943cbd59c87044a943a1adab591c4923ca016879406d71aea4370b093"
+          url: "docker.io/corinnekrych/demo-sprint58:1.0.1"
+          digest: "sha256:some"
           cloudbees-url: ${{ vars.CLOUDBEES_PLATFORM_URL }}
           cloudbees-pat: ${{ secrets.CLOUDBEES_PLATFORM_PAT }}          
