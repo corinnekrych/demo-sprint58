@@ -3,10 +3,10 @@ Sample go app with docker build
 # Build & Run
 ## Docker build
 ```
-> docker build -t corinnekrych/go-hello-world-docker .
+> docker build -t corinnekrych/demo-sprint58 .
 ```
 ## Docker run
 ```
-> docker run corinnekrych/go-hello-world-docker
+> docker run corinnekrych/demo-sprint58
 Hello, world!
 ```
