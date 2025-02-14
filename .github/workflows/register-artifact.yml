@@ -45,6 +45,6 @@ jobs:
           name: "demo-sprint58-artifact"
           version: ${{env.version}}
           url: "docker.io/corinnekrych/demo-sprint58:${{env.version}}"
-          digest: "sha256:some"
+          digest: ${{push.outputs.digest}}
           cloudbees-url: ${{ vars.CLOUDBEES_PLATFORM_URL }}
           cloudbees-pat: ${{ secrets.CLOUDBEES_PLATFORM_PAT }}          
