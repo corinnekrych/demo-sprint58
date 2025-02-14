@@ -2,7 +2,8 @@ name: Publish Docker image
 
 on:
   workflow_dispatch:
-
+env:
+  version: '1.0.2'
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -35,15 +36,15 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: corinnekrych/demo-sprint58:1.0.1
+          tags: corinnekrych/demo-sprint58:${{env.version}}
           
       - name: Deploy artifact to CBP
         uses: cloudbees-gha-cbp/register-build-artifact@main
         with:
           component-id: "1541ff41-3361-4159-b594-27142bd69baf"
           name: "demo-sprint58-artifact"
-          version: "1.0.0"
-          url: "docker.io/corinnekrych/demo-sprint58:1.0.1"
+          version: ${{env.version}}
+          url: "docker.io/corinnekrych/demo-sprint58:${{env.version}}"
           digest: "sha256:some"
           cloudbees-url: ${{ vars.CLOUDBEES_PLATFORM_URL }}
           cloudbees-pat: ${{ secrets.CLOUDBEES_PLATFORM_PAT }}          
